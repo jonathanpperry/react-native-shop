@@ -10,8 +10,13 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { CATEGORIES } from "../../assets/categories";
+import { supabase } from "../lib/supabase";
 
 export const ListHeader = () => {
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+  };
+
   return (
     <View style={[styles.headerContainer]}>
       <View style={styles.headerTop}>
@@ -45,7 +50,7 @@ export const ListHeader = () => {
           </Link>
           <TouchableOpacity
             style={styles.signOutButton}
-            // onPress={handleSignOut}
+            onPress={handleSignOut}
           >
             <FontAwesome name="sign-out" size={25} color="red" />
           </TouchableOpacity>
